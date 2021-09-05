@@ -12,14 +12,12 @@ pipeline{
             }
         }
         stage('sonar Analise'){
-            steps{
-                enviroment{
+            enviroment{
                     scannerHome = toll 'Sonar_Scanner'
                 }
-                steps{
-                    withSonarQuebEnv('Sonar_Local'){
-                        bat "${scannerHome}/bin/sonar-scanner -e -Dsonar.projectKey=Deploy-bakc -Dsonar.host.url=http://localhost:9000 -Dsonar.login=0f4977a5d4d17a0fc25e19a717dabb53cef75c7a -Dsonar.java.binaries=target -Dsonar.coverage.exclusions=**/.mvn/**,**/src/test/**, **/model/**,**Application.java"
-                    }
+            steps{
+                withSonarQuebEnv('Sonar_Local'){
+                     bat "${scannerHome}/bin/sonar-scanner -e -Dsonar.projectKey=Deploy-bakc -Dsonar.host.url=http://localhost:9000 -Dsonar.login=0f4977a5d4d17a0fc25e19a717dabb53cef75c7a -Dsonar.java.binaries=target -Dsonar.coverage.exclusions=**/.mvn/**,**/src/test/**, **/model/**,**Application.java"
                 }
             }
         }
