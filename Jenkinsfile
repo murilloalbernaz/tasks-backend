@@ -29,6 +29,11 @@ pipeline{
                 }
             }
         }
+        stage('Deploy Ambiente Teste'){
+            steps{
+                deploy adapters: [tomcat8(credentialsId: 'toncatlogin', path: '', url: 'http://localhost:8102/')], contextPath: 'tasks-backend', war: 'target/tasks-backend.war'
+            }
+        }
     }
 }
 
