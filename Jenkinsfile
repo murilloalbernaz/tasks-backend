@@ -13,7 +13,7 @@ pipeline{
         }
         stage('sonar Analise'){
             environment{
-                    scannerHome = toll 'Sonar_Scanner'
+                    scannerHome = tool 'Sonar_Scanner'
                 }
             steps{
                 withSonarQuebEnv('Sonar_Local'){
