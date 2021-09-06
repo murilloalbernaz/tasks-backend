@@ -21,6 +21,14 @@ pipeline{
                 }
             }
         }
+        stage('Quality guate'){
+            steps{
+                sleep(20) {
+                timeout(time: 1, unit 'MINUTES')
+                waitForQualityGate abortPipeline: true
+                }
+            }
+        }
     }
 }
 
