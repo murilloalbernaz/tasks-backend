@@ -37,7 +37,7 @@ pipeline{
         /*stage('API Test'){
             steps{
                 dir('api-test') {
-                git credentialsId: 'githublogin', url: 'https://github.com/wcaquinocursos/tasks-backend'
+                git credentialsId: 'githublogin', url: 'URL'
                 bat 'mvn test'
                 }
             }
@@ -55,6 +55,14 @@ pipeline{
               deploy adapters: [tomcat8(credentialsId: 'toncatlogin', path: '', url: 'http://localhost:8102/')], contextPath: 'tasks', war: 'front-end/target/tasks.war'
             }
         }
+        /*stage('Selenium Test'){
+            steps{
+                dir('api-test') {
+                git credentialsId: 'githublogin', url: 'URL'
+                bat 'mvn test'
+                }
+            }
+        }*/
     }
 }
 
