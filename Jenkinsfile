@@ -34,6 +34,25 @@ pipeline{
                 deploy adapters: [tomcat8(credentialsId: 'toncatlogin', path: '', url: 'http://localhost:8102/')], contextPath: 'tasks-backend', war: 'target/tasks-backend.war'
             }
         }
+        /*stage('API Test'){
+            steps{
+                dir('api-test') {
+                git credentialsId: 'githublogin', url: 'https://github.com/wcaquinocursos/tasks-backend'
+                bat 'mvn test'
+                }
+            }
+        }*/
+        stage('Build front-end'){
+            steps{
+                dir('front-end'){
+                    git credentialsId: 'githublogin', url: 'https://github.com/murilloalbernaz/tasks-frontend'
+                    bat 'mvn clean package'
+                }
+            }
+        }
+        stage('Deploy Front-end'){
+            deploy adapters: [tomcat8(credentialsId: 'toncatlogin', path: '', url: 'http://localhost:8102/')], contextPath: 'tasks', war: 'target/tasks.war'
+        }
     }
 }
 
