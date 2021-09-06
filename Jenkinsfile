@@ -51,7 +51,9 @@ pipeline{
             }
         }
         stage('Deploy Front-end'){
-            deploy adapters: [tomcat8(credentialsId: 'toncatlogin', path: '', url: 'http://localhost:8102/')], contextPath: 'tasks', war: 'target/tasks.war'
+            steps{
+              deploy adapters: [tomcat8(credentialsId: 'toncatlogin', path: '', url: 'http://localhost:8102/')], contextPath: 'tasks', war: 'target/tasks.war'
+            }
         }
     }
 }
